@@ -1,0 +1,23 @@
+.card{
+  width: 50px;
+  height: 100px;
+  background-color: gray;
+  border-radius: 25px;
+  margin: 20px;
+  padding: 25px;
+}
+
+.card:hover{
+  cursor: pointer;
+}
+
+.row{
+  display: inline-block;
+}
+
+.container{
+  width: auto;
+}
+
+
+
