@@ -7,6 +7,16 @@
 </head>
 <body>
 
+
+<select id="grid-type" onchange="createGrid()" >
+  <option value="">Choose your grid type</option>
+  <option value="3">3x3</option>
+  <option value="4">4x4</option>
+  <option value="5">5x5</option>
+  <option value="6">6x6</option>
+</select>
+
+
 <div class='container'>
 
 <h1>Sal's Memory Game</h1>
@@ -15,49 +25,10 @@
 
 <h3>Matching: <span id="matching">some card</span></h3>
 
-  <div class="row">
-    <div class="card" id="card-1-back"></div>
-    <div class="card" id="card-1-front"></div>
-    <div class="card" id="card-2-back"></div>
-    <div class="card" id="card-2-front"></div>
-    <div class="card" id="card-3-back"></div>
-    <div class="card" id="card-3-front"></div>
-    <div class="card" id="card-4-back"></div>
-    <div class="card" id="card-4-front"></div>
-  </div>
-
-  <div class="row">
-    <div class="card" id="card-5-back"></div>
-    <div class="card" id="card-5-front"></div>
-    <div class="card" id="card-6-back"></div>
-    <div class="card" id="card-6-front"></div>
-    <div class="card" id="card-7-back"></div>
-    <div class="card" id="card-7-front"></div>
-    <div class="card" id="card-8-back"></div>
-    <div class="card" id="card-8-front"></div>
-  </div>
-
-  <div class="row">
-    <div class="card" id="card-9-back"></div>
-    <div class="card" id="card-9-front"></div>
-    <div class="card" id="card-10-back"></div>
-    <div class="card" id="card-10-front"></div>
-    <div class="card" id="card-11-back"></div>
-    <div class="card" id="card-11-front"></div>
-    <div class="card" id="card-12-back"></div>
-    <div class="card" id="card-12-front"></div>
-  </div>
-
-  <div class="row">
-    <div class="card" id="card-13-back"></div>
-    <div class="card" id="card-13-front"></div>
-    <div class="card" id="card-14-back"></div>
-    <div class="card" id="card-14-front"></div>
-    <div class="card" id="card-15-back"></div>
-    <div class="card" id="card-15-front"></div>
-    <div class="card" id="card-16-back"></div>
-    <div class="card" id="card-16-front"></div>
-  </div>
+<!-- Card row/divs go here -->
+<div id="card-container">
+</div>
+<!-- end card-container -->
 
 <h3 id="message">Some message.</h3>
 

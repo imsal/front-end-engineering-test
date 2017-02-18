@@ -1,7 +1,8 @@
 .card{
   width: 50px;
   height: 100px;
-  background-color: gray;
+  /*background-color: gray;*/
+  background-image: url("assets/images/back_of_card.png");
   border-radius: 25px;
   margin: 20px;
   padding: 25px;
@@ -11,7 +12,7 @@
   cursor: pointer;
 }
 
-.row{
+.col{
   display: inline-block;
 }
 
