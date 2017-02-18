@@ -1,17 +1,4 @@
-/*
 
-// initializing functions
-
-function init(){
-
-  // for DRY principles, turn this into a function later..
-  for (i = 1; i < 17; i++) {
-    document.getElementById("card-" + i + "-front").style.display = 'none';
-  }
-
-}
-
-window.onload = init;
 
 // global variables
 
@@ -19,8 +6,9 @@ var pairsLeft = document.getElementById("pairs-left");
 var matching = document.getElementById("matching");
 var message = document.getElementById("message");
 
-*/
 
+
+// Initial Creation of Cards and Grids
 
 function createCols(gridSize){
   for ( var i=1; i<gridSize+1; i++){
@@ -47,6 +35,7 @@ function createCards(gridSize){
       var cardBack = document.createElement('div');
       cardBack.className = "card";
       cardBack.setAttribute('id', "card-"+(cardCount)+'-back');
+      cardBack.style.backgroundImage = "url('assets/images/back_of_card.png')"
       colSelect.appendChild(cardBack);
       cardCount++;
     }
@@ -55,8 +44,65 @@ function createCards(gridSize){
 
 }
 
+// Randomly Set Cards
+function setCard(numberOfCards){
+  // set urls
+  var blastoise = {
+  name: 'Blastoise',
+  url: "assets/images/blastoise.png"
+  }
 
-function createGrid(){
+  var charizard = {
+  name: 'Charizard',
+  "assets/images/charizard.png"
+  }
+
+  var gengar = {
+  name: 'Gengar',
+  url: "assets/images/gengar.png"
+  }
+
+  var lugia = {
+  name: 'Lugia',
+  url: "assets/images/lugia.png"
+  }
+
+  var machamp = {
+  name: 'Machamp',
+  url: "assets/images/machamp.png"
+  }
+
+  var mewtwo = {
+  name: 'Mewtwo',
+  url: "assets/images/mewtwo.png"
+  }
+
+  var moltres = {
+  name: 'Moltres',
+  url: "assets/images/moltres.png"
+  }
+
+  var pikachu = {
+  name: 'Pikachu',
+  url: "assets/images/pikachu.png"
+  }
+
+  var pinsur = {
+  name: 'Pinsur',
+  url: "assets/images/pinsur.png"
+  }
+
+  var venusaur = {
+  name: 'Venusaur',
+  url: "assets/images/venusaur.png"
+  }
+
+}
+
+
+// Start Game
+
+function startGame(){
 
   var select = document.getElementById('grid-type');
   var gridValue = parseInt(select.value);

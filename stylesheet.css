@@ -1,11 +1,16 @@
 .card{
-  width: 50px;
-  height: 100px;
+
+  /*width: 420px;*/
+  /*height: 420px;*/
+  width: 210px;
+  height: 210px;
+  size: .8em;
   /*background-color: gray;*/
-  background-image: url("assets/images/back_of_card.png");
+  /*background-image: url("assets/images/back_of_card.png");*/
+  background-size: cover;
   border-radius: 25px;
-  margin: 20px;
-  padding: 25px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .card:hover{
