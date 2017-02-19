@@ -112,15 +112,53 @@ function shuffle(array) {
   return array;
 }
 
+// function doubleCardObjects(){
+//   var cardObjectsClone = [];
+
+//   for ( i = 0; i<cardObjects.length; i++){
+//     cardObjectsClone.push(cardObjects[i]);
+//   }
+
+//   for ( i = 0; i<cardObjects.length; i++){
+//     cardObjectsClone.push(cardObjects[i]);
+//   }
+
+//   return cardObjectsClone;
+// }
+
+
+// Create Multiple Variables accessed through an array
+// function createMatchAssociations(numberOfCards){
+
+//   // var cardObjectsClone = cardObjects.splice();
+//   // cardObjectsClone.push()
+
+//   var cardAssociations = [];
+
+//   for (var i = 0; i <= numberOfCards; i++) {
+//       cardAssociations[i] = ;
+//   }
+
+//   return cardAssociations;
+// }
+
+
 
 
 
 // Randomly Set Cards
-function setCard(numberOfCards){
-  // set urls
-  //
-  // access by blastoise.name
+function setCards(numberOfCards){
 
+var numberOfMatches = numberOfCards / 2;
+
+shuffle(cardObjects);
+
+  // ensure that there are only as many card objects as nessasary
+  while(cardObjects.length > numberOfMatches){
+    cardObjects.pop();
+  }
+
+  shuffle(cardObjects);
 
 }
 
@@ -135,7 +173,10 @@ function startGame(){
   createCols(gridValue);
   createCards(gridValue);
 
-  shuffle(cardObjects);
+  setCards(gridValue*gridValue);
+  cardObjects = cardObjects.concat(cardObjects);
+  // doubleCardObjects();
+  // createMatchAssociations(gridValue*gridValue);
 
   select.style.display = 'none'; // hide select box
 }
