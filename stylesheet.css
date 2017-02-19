@@ -1,12 +1,8 @@
 .card{
 
-  /*width: 420px;*/
-  /*height: 420px;*/
   width: 210px;
   height: 210px;
   size: .8em;
-  /*background-color: gray;*/
-  /*background-image: url("assets/images/back_of_card.png");*/
   background-size: cover;
   border-radius: 25px;
   margin: 5px;

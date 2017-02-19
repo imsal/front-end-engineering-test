@@ -3,10 +3,9 @@
 <head>
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
   <script type="text/javascript" src="script.js"></script>
-  <title>Sal's Memory Game</title>
+  <title>Sal's Matching Game</title>
 </head>
 <body>
-
 
 <select id="grid-type" onchange="startGame()" >
   <option value="">Choose your grid type</option>
@@ -15,10 +14,9 @@
   <option value="6">6x6</option>
 </select>
 
-
 <div class='container'>
 
-<h1>Sal's Memory Game</h1>
+<h1>Sal's Matching Game</h1>
 
 <h3>Pairs Left To Math: <span id="pairs-left">8</span></h3>
 
@@ -29,9 +27,12 @@
 </div>
 <!-- end card-container -->
 
-<h3 id="message">Some message.</h3>
-
 </div><!-- end container -->
+
+<audio id="audio" controls="controls">
+    <source id="oggSource" src="" type="audio/ogg" />
+    <source id="mp3Source" src="" type="audio/mp3" />
+</audio>
 
 
 </body>
