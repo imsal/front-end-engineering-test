@@ -85,8 +85,9 @@ function createCards(gridSize){
 
       var cardBack = document.createElement('div');
       cardBack.className = "card";
-      cardBack.setAttribute('id', "card-"+(cardCount)+'-back');
+      cardBack.setAttribute('id', cardCount);
       cardBack.style.backgroundImage = "url('assets/images/back_of_card.png')";
+      cardBack.setAttribute('onclick', 'checkIfMatch(this.id);')
       colSelect.appendChild(cardBack);
       cardCount++;
     }
@@ -112,41 +113,16 @@ function shuffle(array) {
   return array;
 }
 
-// function doubleCardObjects(){
-//   var cardObjectsClone = [];
-
-//   for ( i = 0; i<cardObjects.length; i++){
-//     cardObjectsClone.push(cardObjects[i]);
-//   }
-
-//   for ( i = 0; i<cardObjects.length; i++){
-//     cardObjectsClone.push(cardObjects[i]);
-//   }
-
-//   return cardObjectsClone;
-// }
-
-
-// Create Multiple Variables accessed through an array
-// function createMatchAssociations(numberOfCards){
-
-//   // var cardObjectsClone = cardObjects.splice();
-//   // cardObjectsClone.push()
-
-//   var cardAssociations = [];
-
-//   for (var i = 0; i <= numberOfCards; i++) {
-//       cardAssociations[i] = ;
-//   }
-
-//   return cardAssociations;
-// }
+function checkIfMatch(clickedID){
+  var variable = parseInt(clickedID)-1;
+  var firstCard = document.getElementById(clickedID);
+  var cardUrl = "url('"+cardObjects[variable].url+"')";
+  firstCard.style.backgroundImage = cardUrl;
+}
 
 
 
-
-
-// Randomly Set Cards
+// Removes extra cards & shuffles
 function setCards(numberOfCards){
 
 var numberOfMatches = numberOfCards / 2;
@@ -174,9 +150,9 @@ function startGame(){
   createCards(gridValue);
 
   setCards(gridValue*gridValue);
+
+  // doubles array for matching purposes
   cardObjects = cardObjects.concat(cardObjects);
-  // doubleCardObjects();
-  // createMatchAssociations(gridValue*gridValue);
 
   select.style.display = 'none'; // hide select box
 }
