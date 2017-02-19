@@ -6,7 +6,58 @@ var pairsLeft = document.getElementById("pairs-left");
 var matching = document.getElementById("matching");
 var message = document.getElementById("message");
 
+// card objects
+var blastoise = {
+name: 'Blastoise',
+url: "assets/images/blastoise.png"
+};
 
+var charizard = {
+name: 'Charizard',
+url: "assets/images/charizard.png"
+};
+
+var gengar = {
+name: 'Gengar',
+url: "assets/images/gengar.png"
+};
+
+var lugia = {
+name: 'Lugia',
+url: "assets/images/lugia.png"
+};
+
+var machamp = {
+name: 'Machamp',
+url: "assets/images/machamp.png"
+};
+
+var mewtwo = {
+name: 'Mewtwo',
+url: "assets/images/mewtwo.png"
+};
+
+var moltres = {
+name: 'Moltres',
+url: "assets/images/moltres.png"
+};
+
+var pikachu = {
+name: 'Pikachu',
+url: "assets/images/pikachu.png"
+};
+
+var pinsur = {
+name: 'Pinsur',
+url: "assets/images/pinsur.png"
+};
+
+var venusaur = {
+name: 'Venusaur',
+url: "assets/images/venusaur.png"
+};
+
+var cardObjects = [blastoise, charizard, gengar, lugia, machamp, mewtwo, moltres, pikachu, pinsur, venusaur];
 
 // Initial Creation of Cards and Grids
 
@@ -35,7 +86,7 @@ function createCards(gridSize){
       var cardBack = document.createElement('div');
       cardBack.className = "card";
       cardBack.setAttribute('id', "card-"+(cardCount)+'-back');
-      cardBack.style.backgroundImage = "url('assets/images/back_of_card.png')"
+      cardBack.style.backgroundImage = "url('assets/images/back_of_card.png')";
       colSelect.appendChild(cardBack);
       cardCount++;
     }
@@ -44,58 +95,32 @@ function createCards(gridSize){
 
 }
 
+// Knuth Shuffle
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+
+
 // Randomly Set Cards
 function setCard(numberOfCards){
   // set urls
-  var blastoise = {
-  name: 'Blastoise',
-  url: "assets/images/blastoise.png"
-  }
+  //
+  // access by blastoise.name
 
-  var charizard = {
-  name: 'Charizard',
-  "assets/images/charizard.png"
-  }
-
-  var gengar = {
-  name: 'Gengar',
-  url: "assets/images/gengar.png"
-  }
-
-  var lugia = {
-  name: 'Lugia',
-  url: "assets/images/lugia.png"
-  }
-
-  var machamp = {
-  name: 'Machamp',
-  url: "assets/images/machamp.png"
-  }
-
-  var mewtwo = {
-  name: 'Mewtwo',
-  url: "assets/images/mewtwo.png"
-  }
-
-  var moltres = {
-  name: 'Moltres',
-  url: "assets/images/moltres.png"
-  }
-
-  var pikachu = {
-  name: 'Pikachu',
-  url: "assets/images/pikachu.png"
-  }
-
-  var pinsur = {
-  name: 'Pinsur',
-  url: "assets/images/pinsur.png"
-  }
-
-  var venusaur = {
-  name: 'Venusaur',
-  url: "assets/images/venusaur.png"
-  }
 
 }
 
@@ -109,6 +134,8 @@ function startGame(){
 
   createCols(gridValue);
   createCards(gridValue);
+
+  shuffle(cardObjects);
 
   select.style.display = 'none'; // hide select box
 }
