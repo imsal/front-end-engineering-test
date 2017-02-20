@@ -2,9 +2,21 @@
 
 // global variables
 
-var pairsLeft = document.getElementById("pairs-left");
-var matching = document.getElementById("matching");
+var pairsLeft = 0;
+// var matching = document.getElementById("matching");
 var message = document.getElementById("message");
+var numberOfClicks = 1;
+var cardOne = {
+  id: null,
+  name: null
+};
+
+var cardTwo = {
+  id: null,
+  name: null
+};
+var attempts = 0;
+
 
 // card objects
 var blastoise = {
@@ -106,7 +118,7 @@ ogg: "assets/sounds/ninetales.ogg"
 };
 
 var staryu = {
-name: 'staryu',
+name: 'Staryu',
 url: "assets/images/staryu.png",
 mp3: "assets/sounds/staryu.mp3",
 ogg: "assets/sounds/staryu.ogg"
@@ -172,7 +184,7 @@ function createCards(gridSize){
       // cardBack.style.backgroundImage = "url('assets/images/back_of_card.png')";
       cardBack.style.backgroundImage = "url('assets/images/pokeball.jpg')";
 
-      cardBack.setAttribute('onclick', 'checkIfMatch(this.id);')
+      cardBack.setAttribute('onclick', 'clickCard(this.id);')
       colSelect.appendChild(cardBack);
       cardCount++;
     }
@@ -198,16 +210,25 @@ function shuffle(array) {
   return array;
 }
 
-function checkIfMatch(clickedID){
+
+function flipCard(cardText,clickedID){
   var variable = parseInt(clickedID)-1;
-  var firstCard = document.getElementById(clickedID);
-  var cardUrl = "url('"+cardObjects[variable].url+"')";
+  var card = document.getElementById(clickedID);
+  var cardImageUrl = "url('"+cardObjects[variable].url+"')";
+
+
+  card.style.backgroundImage = cardImageUrl;
+
+  // card text
+  var cardName = cardObjects[variable].name;
+  cardText.innerHTML = cardName;
+  return cardName;
+}
+
+function playSound(clickedID){
+  var variable = parseInt(clickedID)-1;
   var mp3Url = cardObjects[variable].mp3;
   var oggUrl = cardObjects[variable].ogg;
-  var cardName = cardObjects[variable].name;
-  firstCard.style.backgroundImage = cardUrl;
-
-
   var audio = document.getElementById('audio');
 
   var sourceOgg = document.getElementById('oggSource').setAttribute('src', oggUrl);
@@ -215,6 +236,96 @@ function checkIfMatch(clickedID){
 
   audio.load(); //call this to just preload the audio without playing
   audio.play(); //call this to play the song right away
+}
+
+function resetDialog(){
+
+}
+
+function gameCompletion(){
+  var container = document.getElementById('container');
+  // kill all children elements
+  while (container.hasChildNodes()) {
+    container.removeChild(container.lastChild);
+  }
+  var newTitle = document.createElement('h1');
+  newTitle.innerHTML = 'Congratulations, you have completed the game!';
+  document.getElementById('container').appendChild(newTitle);
+  // play victory sound
+  var mp3Url = "assets/sounds/victory_music.mp3";
+  var oggUrl = "assets/sounds/victory_music.ogg";
+  var audio = document.getElementById('audio');
+
+  var sourceOgg = document.getElementById('oggSource').setAttribute('src', oggUrl);
+  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', mp3Url);
+
+  audio.load();
+  audio.play();
+}
+
+function evaluate(){
+  var firstPick = document.getElementById("first-pick");
+  var secondPick = document.getElementById("second-pick");
+
+  if (cardOne.name == cardTwo.name){
+    pairsLeft -= 1;
+    document.getElementById("pairs-left").innerHTML = pairsLeft;
+
+    firstPick.className = "correct";
+    secondPick.className = "correct";
+
+  } else {
+    // incorrect!
+    firstPick.className = "incorrect";
+    secondPick.className = "incorrect";
+
+    setTimeout(function(){
+    document.getElementById(cardOne.id).style.backgroundImage = "url('assets/images/pokeball.jpg')";
+    document.getElementById(cardTwo.id).style.backgroundImage = "url('assets/images/pokeball.jpg')";
+    document.getElementById('matching-1').innerHTML = '';
+    document.getElementById('matching-2').innerHTML = '';
+    firstPick.className = "";
+    secondPick.className = "";
+    }, 1000);
+
+  }
+
+  // check if player completed the game
+  if (pairsLeft == 0){
+    // something
+    gameCompletion();
+  }
+
+}
+
+
+
+function clickCard(clickedID){
+
+  // first card
+  if (numberOfClicks%2 == 1){
+  document.getElementById('matching-2').innerHTML = '';
+  document.getElementById("first-pick").className = '';
+  document.getElementById("second-pick").className = '';
+  var firstCardText = document.getElementById('matching-1');
+  cardOne.name = flipCard(firstCardText, clickedID);
+  playSound(clickedID);
+  numberOfClicks += 1;
+  cardOne.id = clickedID;
+
+  } else {
+  // put some code that doesn't allow the user to pick the same first card. ////////////////
+  // second card
+  var secondCardText = document.getElementById('matching-2');
+  cardTwo.name = flipCard(secondCardText, clickedID);
+  playSound(clickedID);
+  numberOfClicks += 1;
+  cardTwo.id = clickedID;
+  attempts += 1;
+  document.getElementById('attempts').innerHTML = attempts;
+  evaluate();
+  }
+
 }
 
 
@@ -239,9 +350,16 @@ shuffle(cardObjects);
 // Start Game
 
 function startGame(){
+  // kill audio
+  var audio = document.getElementById('audio');
+  var sourceOgg = document.getElementById('oggSource').setAttribute('src', '');
+  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', '');
+  audio.load();
+  audio.play();
 
   var select = document.getElementById('grid-type');
   var gridValue = parseInt(select.value);
+  var totalCards = gridValue*gridValue;
 
   createCols(gridValue);
   createCards(gridValue);
@@ -250,6 +368,27 @@ function startGame(){
 
   // doubles array for matching purposes
   cardObjects = cardObjects.concat(cardObjects);
+  shuffle(cardObjects);
+
+  pairsLeft = (totalCards/2);
+  document.getElementById("pairs-left").innerHTML = pairsLeft;
 
   select.style.display = 'none'; // hide select box
+}
+
+
+
+
+window.onload = function(){
+  // play music
+  alert('Please enable audio for full gaming effect.');
+  var mp3Url = "assets/sounds/opening-screen.mp3";
+  var oggUrl = "assets/sounds/opening-screen.ogg";
+  var audio = document.getElementById('audio');
+
+  var sourceOgg = document.getElementById('oggSource').setAttribute('src', oggUrl);
+  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', mp3Url);
+
+  audio.load();
+  audio.play();
 }

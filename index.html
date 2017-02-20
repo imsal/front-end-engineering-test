@@ -7,6 +7,10 @@
 </head>
 <body>
 
+
+
+<div id="container" class='container'>
+
 <select id="grid-type" onchange="startGame()" >
   <option value="">Choose your grid type</option>
   <option value="2">2x2</option>
@@ -14,18 +18,20 @@
   <option value="6">6x6</option>
 </select>
 
-<div class='container'>
-
 <h1>Sal's Matching Game</h1>
 
-<h3>Pairs Left To Math: <span id="pairs-left">8</span></h3>
+<h3>Pairs Left To Math: <span id="pairs-left"></span></h3>
 
-<h3>Matching: <span id="matching">some card</span></h3>
+<h3>Attempts Made: <span id="attempts">0</span></h3>
+
+<h3 id="first-pick">First Pick: <span id="matching-1"></span></h3>
+<h3 id="second-pick">Second Pick: <span id="matching-2"></span></h3>
 
 <!-- Card row/divs go here -->
 <div id="card-container">
 </div>
 <!-- end card-container -->
+
 
 </div><!-- end container -->
 
@@ -33,7 +39,6 @@
     <source id="oggSource" src="" type="audio/ogg" />
     <source id="mp3Source" src="" type="audio/mp3" />
 </audio>
-
 
 </body>
 </html>
