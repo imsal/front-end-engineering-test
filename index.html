@@ -11,6 +11,10 @@
 
 <div id="container" class='container'>
 
+<h1>Sal's Matching Game</h1>
+
+<img id='new-game-image' src="assets/images/newgame.png" />
+
 <select id="grid-type" onchange="startGame()" >
   <option value="">Choose your grid type</option>
   <option value="2">2x2</option>
@@ -18,12 +22,15 @@
   <option value="6">6x6</option>
 </select>
 
-<h1>Sal's Matching Game</h1>
+<!-- make these appear upon new game -->
 
-<h3>Pairs Left To Math: <span id="pairs-left"></span></h3>
+<h3 id="pairs-left-title">Pairs Left To Math: <span id="pairs-left"></span></h3>
 
 <h3 id="first-pick">First Pick: <span id="matching-1"></span></h3>
 <h3 id="second-pick">Second Pick: <span id="matching-2"></span></h3>
+<!-- end here -->
+
+
 
 <!-- Card row/divs go here -->
 <div id="card-container">
@@ -33,6 +40,8 @@
 
 </div><!-- end container -->
 
+
+<!-- hidden audio tags -->
 <audio id="audio" autoplay="true" controls="controls">
     <source id="oggSource" src="" type="audio/ogg" />
     <source id="mp3Source" src="" type="audio/mp3" />
@@ -42,6 +51,8 @@
     <source id="background-oggSource" src="" type="audio/ogg" />
     <source id="background-mp3Source" src="" type="audio/mp3" />
 </audio>
+<!-- end audio -->
+
 
 </body>
 </html>

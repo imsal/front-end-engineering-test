@@ -246,6 +246,36 @@ function flipCard(cardText,clickedID){
   return cardName;
 }
 
+function startBackgroundAudio(audioSelect){
+  var backgroundAudio  = document.getElementById('background-audio');
+  backgroundAudio.volume = 0.65;
+
+  if (audioSelect == 'openGame'){
+  var mp3Url = "assets/sounds/opening-screen.mp3";
+  var oggUrl = "assets/sounds/opening-screen.ogg";
+  } else if (audioSelect == 'startGame'){
+    var mp3Url = "assets/sounds/background_audio.mp3";
+    var oggUrl = "assets/sounds/background_audio.ogg";
+  } else if (audioSelect == 'victory-music'){
+    var mp3Url = "assets/sounds/victory_music.mp3";
+    var oggUrl = "assets/sounds/victory_music.ogg";
+  } else{
+    // nothing
+  }
+
+  var sourceOgg = document.getElementById('background-oggSource').setAttribute('src', oggUrl);
+  var sourceMp3 = document.getElementById('background-mp3Source').setAttribute('src', mp3Url);
+
+  backgroundAudio.load();
+  backgroundAudio.play();
+}
+
+function killBackgroundAudio(){
+
+}
+
+
+
 function playSound(clickedID){
   var variable = parseInt(clickedID)-1;
   var mp3Url = cardObjects[variable].mp3;
@@ -273,6 +303,8 @@ function gameCompletion(){
   newParagraph.innerHTML = 'It only took you ' + attempts + ' attempts!';
   document.getElementById('container').appendChild(newParagraph);
   // play victory sound
+  startBackgroundAudio('victory-music');
+/*
   var mp3Url = "assets/sounds/victory_music.mp3";
   var oggUrl = "assets/sounds/victory_music.ogg";
   var audio = document.getElementById('audio');
@@ -282,6 +314,7 @@ function gameCompletion(){
 
   audio.load();
   audio.play();
+  */
 }
 
 function evaluate(clickedID){
@@ -393,24 +426,11 @@ shuffle(cardObjects);
 // Start Game
 
 function startGame(){
-  // kill audio
-  var audio = document.getElementById('audio');
-  var sourceOgg = document.getElementById('oggSource').setAttribute('src', '');
-  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', '');
-  audio.load();
-  audio.play();
-  // enable background audio
-  var backgroundAudio  = document.getElementById('background-audio');
+  document.getElementById('pairs-left-title').style.display = 'block';
+  document.getElementById('first-pick').style.display = 'block';
+  document.getElementById('second-pick').style.display = 'block';
 
-  backgroundAudio.volume = 0.65;
-
-  var backgroundAudioSourceOgg = document.getElementById('background-oggSource').setAttribute('src', 'assets/sounds/background_audio.ogg');
-  var backgroundAudioSourceMp3 = document.getElementById('background-mp3Source').setAttribute('src', 'assets/sounds/background_audio.mp3');
-
-  backgroundAudio.load();
-  backgroundAudio.play();
-
-///////
+  startBackgroundAudio('startGame');
 
   var select = document.getElementById('grid-type');
   var gridValue = parseInt(select.value);
@@ -429,21 +449,18 @@ function startGame(){
   document.getElementById("pairs-left").innerHTML = pairsLeft;
 
   select.style.display = 'none'; // hide select box
+  document.getElementById('new-game-image').style.display = 'none';
 }
 
 
 
 
 window.onload = function(){
-  // play music
-  alert('Please enable audio for full gaming effect.');
-  var mp3Url = "assets/sounds/opening-screen.mp3";
-  var oggUrl = "assets/sounds/opening-screen.ogg";
-  var audio = document.getElementById('audio');
+  // hide elements
+  document.getElementById('pairs-left-title').style.display = 'none';
+  document.getElementById('first-pick').style.display = 'none';
+  document.getElementById('second-pick').style.display = 'none';
+  //alert('Please enable audio for full gaming effect.');
 
-  var sourceOgg = document.getElementById('oggSource').setAttribute('src', oggUrl);
-  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', mp3Url);
-
-  audio.load();
-  audio.play();
+  startBackgroundAudio('openGame'); //  opening audio
 }
