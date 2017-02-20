@@ -298,23 +298,21 @@ function gameCompletion(){
   }
   var newTitle = document.createElement('h1');
   newTitle.innerHTML = 'Congratulations, you have completed the game!';
+  newTitle.setAttribute('text-align', 'center');
   document.getElementById('container').appendChild(newTitle);
   var newParagraph = document.createElement('p');
   newParagraph.innerHTML = 'It only took you ' + attempts + ' attempts!';
+  newParagraph.setAttribute('text-align', 'center');
   document.getElementById('container').appendChild(newParagraph);
+
+  var newLink = document.createElement('a');
+  newLink.innerHTML = 'Play Again?';
+  newLink.setAttribute('onclick', 'window.location.reload();');
+  newLink.setAttribute('href', '#');
+  newLink.setAttribute('text-decoration', 'underline');
+  document.getElementById('container').appendChild(newLink);
   // play victory sound
   startBackgroundAudio('victory-music');
-/*
-  var mp3Url = "assets/sounds/victory_music.mp3";
-  var oggUrl = "assets/sounds/victory_music.ogg";
-  var audio = document.getElementById('audio');
-
-  var sourceOgg = document.getElementById('oggSource').setAttribute('src', oggUrl);
-  var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', mp3Url);
-
-  audio.load();
-  audio.play();
-  */
 }
 
 function evaluate(clickedID){

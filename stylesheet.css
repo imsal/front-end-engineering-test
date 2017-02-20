@@ -10,8 +10,10 @@ body{
   size: .8em;
   background-size: cover;
   border-radius: 25px;
-  margin: 5px;
+  margin: 25px;
   padding: 5px;
+
+  margin: auto;
 }
 
 .card:hover{
@@ -23,7 +25,8 @@ body{
 }
 
 .container{
-  margin: 0 auto;
+  text-align:center;
+  height:100vh;
 }
 
 
@@ -39,3 +42,9 @@ body{
 audio{
   display: none;
 }
+
+#grid-type{
+  display: block;
+  margin: auto;
+}
+
