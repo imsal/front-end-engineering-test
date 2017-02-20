@@ -399,6 +399,18 @@ function startGame(){
   var sourceMp3 = document.getElementById('mp3Source').setAttribute('src', '');
   audio.load();
   audio.play();
+  // enable background audio
+  var backgroundAudio  = document.getElementById('background-audio');
+
+  backgroundAudio.volume = 0.65;
+
+  var backgroundAudioSourceOgg = document.getElementById('background-oggSource').setAttribute('src', 'assets/sounds/background_audio.ogg');
+  var backgroundAudioSourceMp3 = document.getElementById('background-mp3Source').setAttribute('src', 'assets/sounds/background_audio.mp3');
+
+  backgroundAudio.load();
+  backgroundAudio.play();
+
+///////
 
   var select = document.getElementById('grid-type');
   var gridValue = parseInt(select.value);
