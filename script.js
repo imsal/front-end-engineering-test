@@ -2,6 +2,8 @@
 
 // global variables
 
+var EnableClicking = true;
+
 var pairsLeft = 0;
 // var matching = document.getElementById("matching");
 var message = document.getElementById("message");
@@ -257,9 +259,6 @@ function playSound(clickedID){
   audio.play(); //call this to play the song right away
 }
 
-function resetDialog(){
-
-}
 
 function gameCompletion(){
   var container = document.getElementById('container');
@@ -303,6 +302,9 @@ function evaluate(clickedID){
     firstPick.className = "incorrect";
     secondPick.className = "incorrect";
 
+    // temporarily disable clicking
+    EnableClicking = false;
+
     setTimeout(function(){
     document.getElementById(cardOne.id).style.backgroundImage = "url('assets/images/pokeball.jpg')";
     document.getElementById(cardTwo.id).style.backgroundImage = "url('assets/images/pokeball.jpg')";
@@ -310,6 +312,8 @@ function evaluate(clickedID){
     document.getElementById('matching-2').innerHTML = '';
     firstPick.className = "";
     secondPick.className = "";
+    // reanable clicking
+    EnableClicking = true;
     }, 1000);
 
   }
@@ -319,13 +323,9 @@ function evaluate(clickedID){
     // something
     setTimeout(function(){
       gameCompletion();
-      }, 1000);
+      }, 2000);
 
   }
-
-}
-
-function checkIfCardsHaveBeenMatched(){
 
 }
 
@@ -333,6 +333,7 @@ function checkIfCardsHaveBeenMatched(){
 
 function clickCard(clickedID){
   // errors -- player clicks an already matched card
+  if (EnableClicking == true){
   if (cardObjects[clickedID-1].matched == true) {
     alert('This card has already been matched! Please select a new card!');
   } else {
@@ -366,6 +367,7 @@ function clickCard(clickedID){
     }
 
     }
+  }
   }
 }
 
